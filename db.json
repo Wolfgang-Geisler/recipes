@@ -1,0 +1,17 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "name": "Spaghetti Bolognese",
+      "pers": "4",
+      "ingredients": [
+        {"name": "Spaghetti", "amount": "500g"},
+          {"name": "Minced beef", "amount": "500g"},
+          {"name":"Onion", "amount": 1},
+          {"name":"Garlic", "amount": 1},
+          {"name":"Tomatosauce", "amount": "2 x 400g tins plum tomatoes"},
+          {"name":"Italien herbs", "amount": "1 tbsp"}
+      ]
+    }
+  ]
+}
