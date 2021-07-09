@@ -1,7 +1,7 @@
 <template>
   <div class="recipe-form">
     <form @submit.prevent="createRecipe">
-        <h1>Create Recipe</h1>
+      <h1>Create Recipe</h1>
       <div class="form-control">
         <label>Name</label>
         <input v-model="recipe.name" type="text" />
@@ -11,8 +11,14 @@
         <input v-model="recipe.pers" type="number" />
       </div>
       <h2>Ingredients</h2>
-      <div v-if="recipe.ingriedients.length">
-      <div v-for="(ingredient, index) in ingredients" :key="ingredient.name">{{ingredient.name}} - {{ingredient.amount}} <button @click="removeIngredient(index)"> - </button></div>
+      <div v-if="recipe.ingredients.length">
+        <div
+          v-for="(ingredient, index) in recipe.ingredients"
+          :key="ingredient.name"
+        >
+          {{ ingredient.name }} - {{ ingredient.amount }}
+          <button @click.prevent="removeIngredient(index)">-</button>
+        </div>
       </div>
       <div class="form-control">
         <label>Ingredients Name</label>
@@ -47,18 +53,20 @@ export default {
       newIngredient: {
         name: "",
         amount: "",
-      },      
+      },
     };
   },
   methods: {
     removeIngredient(index) {
-    console.log(ingredients[index])
+      console.log(this.recipe.ingredients[index]);
+      this.recipe.ingredients.splice(index, 1);
     },
     addIngredient() {
-       /*  this.newIngredient.push(ingredients) */
-       this.ingredients.push(this.newIngredient)
-        console.log("New Ingredient: ", this.newIngredient)
-        console.log("Ingredients: ", this.recipe.ingredients)
+      this.recipe.ingredients.push({ ...this.newIngredient });
+      console.log("New Ingredient: ", this.newIngredient);
+      console.log("Ingredients: ", this.recipe.ingredients);
+      this.newIngredient.name = "";
+      this.newIngredient.amount = "";
     },
 
     createRecipe() {

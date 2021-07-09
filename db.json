@@ -24,18 +24,60 @@
         {
           "name": "Tomatosauce",
           "amount": "2 x 400g tins plum tomatoes"
-        },
-        {
-          "name": "Italien herbs",
-          "amount": "1 tbsp"
         }
       ]
     },
     {
-      "name": "",
-      "pers": "",
-      "ingredients": [],
+      "name": "Beef Burger",
+      "pers": "5",
+      "ingredients": [
+        {
+          "name": "Meat",
+          "amount": "3 kg"
+        }
+      ],
       "id": 2
+    },
+    {
+      "name": "Meatballs",
+      "pers": "4",
+      "ingredients": [
+        {
+          "name": "Salt",
+          "amount": "5kg"
+        }
+      ],
+      "id": 3
+    },
+    {
+      "name": "Lasagne",
+      "pers": "5",
+      "ingredients": [
+        {
+          "name": "Vegetables",
+          "amount": "2 kg"
+        },
+        {
+          "name": "Bechamel",
+          "amount": "500ML"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "name": "Schnitzel",
+      "pers": "4",
+      "ingredients": [
+        {
+          "name": "Meat",
+          "amount": "4"
+        },
+        {
+          "name": "Pommes",
+          "amount": "500 g"
+        }
+      ],
+      "id": 5
     }
   ]
 }

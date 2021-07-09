@@ -1,7 +1,13 @@
 <template>
   <div v-if="recipe">
     <div class="header">
-      {{ recipe.name }}
+      <h1>{{ recipe.name }}</h1>
+    </div>
+    <div v-if="recipe.ingredients">
+      <h2>Ingredients</h2>
+      <ul>
+        <li v-for="ingredient in recipe.ingredients" :key="ingredient.id">{{ ingredient.name }} {{ingredient.amount}}</li>
+      </ul>
     </div>
     <div class="footer">
       {{ recipe.image }}
@@ -22,11 +28,11 @@ export default {
   },
   mounted() {
     // const id = this.$route.params.id
-    this.getRecipe(this.id);
+    this.getRecipe();
   },
   methods: {
     //get Recipe um zu bearbeiten
-    getRecipe(id) {
+    getRecipe() {
       axios
         .get(url + this.id)
         .then((response) => {
