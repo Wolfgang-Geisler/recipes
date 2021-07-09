@@ -1,7 +1,7 @@
 <template>
   <div class="recipe-form">
     <form @submit.prevent="updateRecipe">
-        <h1>Update Recipe</h1>
+      <h1>Update Recipe</h1>
       <div class="form-control">
         <label>Name</label>
         <input v-model="name" type="text" />
@@ -12,30 +12,38 @@
       </div>
       <div class="form-control">
         <label>Ingredients Name</label>
-        <input v-model="ingredients.name" type="text" />
-      </div>  
+        <input v-model="ingredients" type="text" />
+      </div>
       <div class="form control">
         <label>Ingredients Amount</label>
-        <input v-model="ingredients.amount" type="text" />
+        <input v-model="ingredients" type="text" />
       </div>
       <div class="form-control">
         <button type="submit">Save</button>
         <button @click="onRedirectTo">Cancel</button>
-        <button @click="onDeleteRecipe(recipe.id)">Delete</button>
+        <button @click="onDeleteRecipe(id)">Delete</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+const url = "http://localhost:3000/recipes/";
+
 export default {
   props: ["id"],
   data() {
     return {
-      recipes: "",
-      name: "",
-      pers: "",
-      ingredients: "",
+      recipe: {
+        name: "",
+        pers: "",
+        ingredients: [],
+      },
+      newIngredient: {
+        name: "",
+        amount: "",
+      },
     };
   },
   mounted() {
@@ -45,27 +53,22 @@ export default {
     onRedirectTo() {
       this.$router.push({ name: "Recipes" });
     },
-
+  //? id, object
     getRecipe() {
       axios
-        .get(url + this.id)
+        .get(url + this.recipe)
         .then((response) => {
           console.log(response.data);
-          this.name = response.data.name;
-          this.pers = response.data.pers;
-          this.ingredients = response.data.ingredients;
+          this.recipe = response.data;
         })
         .catch((error) => {
           console.log(error);
         });
     },
+    //? id, object
     updateRecipe() {
       axios
-        .put(url + this.id, {
-          name: this.name,
-          pers: this.pers,
-          ingredients: this.ingredients,
-        })
+        .put(url + this.recipe)
         .then((response) => {
           this.$router.push({ name: "Recipes" });
         })

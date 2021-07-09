@@ -24,10 +24,16 @@ export default {
   views: {},
   data() {
     return {
-      recipes: "",
-      name: "",
-      pers: "",
-      ingredients: "",
+      recipes: null,
+      recipe: {
+        name: "",
+        pers: "",
+        ingredients: [],
+      },
+      newIngredient: {
+        name: "",
+        amount: "",
+      },
     };
   },
   mounted() {
@@ -52,11 +58,7 @@ export default {
     },
     createRecipes() {
       axios
-        .post(url, {
-          name: this.name,
-          pers: this.pers,
-          ingredients: this.ingredients,
-        })
+        .post(url, this.recipe)
         .then((response) => {
           console.log(response);
           this.recipes.push(response.data);
@@ -66,24 +68,11 @@ export default {
           console.log(error);
         });
     },
-    onDeleteRecipe(id) {
-      axios
-        .delete(url + id)
-        .then((response) => {
-          this.recipes = this.recipes.filter((recipe) => recipe.id !== id);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
+
+    //? id, object
     onEditRecipe(id) {
       axios
-        .put(url, +id, {
-          id: this.id,
-          name: this.name,
-          pers: this.pers,
-          ingredients: this.ingredients,
-        })
+        .put(url + id, this.recipe)
         .then((response) => {
           this.recipes.put(id);
         });

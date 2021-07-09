@@ -17,10 +17,7 @@ export default {
   props: ["id"],
   data() {
     return {
-      recipes: "",
-      name: "",
-      pers: "",
-      ingredients: "",
+      recipe: null,
     };
   },
   mounted() {
@@ -31,7 +28,7 @@ export default {
     //get Recipe um zu bearbeiten
     getRecipe(id) {
       axios
-        .get(url + id)
+        .get(url + this.id)
         .then((response) => {
           console.log(response.data);
           this.recipe = response.data;

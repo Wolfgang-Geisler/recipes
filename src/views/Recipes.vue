@@ -26,10 +26,7 @@ const url = "http://localhost:3000/recipes/";
 export default {
   data() {
     return {
-      recipes: "",
-      name: "",
-      pers: "",
-      ingredients: "",
+      recipes: null,
     };
   },
   mounted() {

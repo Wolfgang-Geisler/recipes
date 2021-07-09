@@ -50,30 +50,5 @@ export default {
       },      
     };
   },
-  methods: {
-    removeIngredient(index) {
-    console.log(ingredients[index])
-    },
-    addIngredient() {
-       /*  this.newIngredient.push(ingredients) */
-       this.ingredients.push(this.newIngredient)
-        console.log("New Ingredient: ", this.newIngredient)
-        console.log("Ingredients: ", this.recipe.ingredients)
-    },
-
-    createRecipe() {
-      axios
-        .post(url, this.recipe)
-        .then((response) => {
-          console.log(response.data);
-          this.$router.push({ name: "Recipes" }); // Landet nach dem erfolgreichen erstellen wieder auf der Übersicht.
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-  },
-};
-</script>
-
-<style></style>
+  methods: {}
+}  
