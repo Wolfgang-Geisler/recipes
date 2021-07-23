@@ -23,6 +23,8 @@
 <script>
 import axios from "axios";
 const url = "http://localhost:3000/recipes/";
+const pexelsUrl = "https://api.pexels.com/v1/";
+;
 export default {
   data() {
     return {
