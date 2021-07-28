@@ -29,11 +29,32 @@
       </div>
       <div class="form control">
         <label>Ingredient Amount</label>
-        <input v-model="newIngredient.amount" type="text" />
+        <input
+          class="newIngriedientAmount"
+          v-model="newIngredient.amount"
+          type="text"
+        />
       </div>
       <div>
-        <button @click.prevent="addIngredient">Add Ingredient</button>
+        <button class="btn btn-secondary" @click.prevent="addIngredient">
+          Add Ingredient
+        </button>
       </div>
+
+<div class="input-group mb-3">
+  <input v-model="imgSearch" type="text" class="form-control" placeholder="Query" aria-label="Query">
+  <button @click.prevent="searchImages" class="btn btn-outline-secondary">search</button>
+</div>
+
+<div class="mb-3">
+  <div class="row">
+    <div v-for="image in images" :key="image.id" class="col">
+      <img :src="image.src.portrait" class="img-fluid" alt="...">
+    </div>
+  </div>
+</div>
+
+      <div type=""></div>
       <div class="form-control">
         <button class="btn btn-success" type="submit">Save</button>
         <button class="btn btn-danger" @click="cancel">Cancel</button>
@@ -44,8 +65,7 @@
 </template>
 
 <script>
-import axios from "axios";
-const url = "http://localhost:3000/recipes/";
+import RecipeService from "../services/recipe-service";
 
 export default {
   props: ["id"],
@@ -57,18 +77,27 @@ export default {
         amount: "",
       },
       error: null,
+      imgSearch: "",
+      images: null,
     };
   },
   mounted() {
     this.getRecipe();
   },
   methods: {
+    searchImages() {
+      PexelsService.getImagesPerQuery(this.imgSearch)
+      .then((response) => {
+        this.images = response.photos;
+        console.log("images response: ", response);
+      })
+    },
+
     removeIngredient(index) {
       console.log(this.recipe.ingredients[index]);
       this.recipe.ingredients.splice(index, 1);
     },
     addIngredient() {
-      /*  this.newIngredient.push(ingredients) */
       this.recipe.ingredients.push({ ...this.newIngredient });
       console.log("New Ingredient: ", this.newIngredient);
       console.log("Ingredients: ", this.recipe.ingredients);
@@ -79,10 +108,8 @@ export default {
     cancel() {
       this.$router.push({ name: "Recipes" });
     },
-    //? id, object
     getRecipe() {
-      axios
-        .get(url + this.id)
+      RecipeService.getRecipe(this.id)
         .then((response) => {
           console.log(response.data);
           this.recipe = response.data;
@@ -92,10 +119,8 @@ export default {
           this.error = error.message;
         });
     },
-    //? id, object
     updateRecipe() {
-      axios
-        .put(url + this.id, this.recipe)
+      RecipeService.updateRecipe(this.id, this.recipe)
         .then(() => {
           this.$router.push({ name: "Recipes" });
         })
@@ -104,8 +129,7 @@ export default {
         });
     },
     deleteRecipe() {
-      axios
-        .delete(url + this.id)
+      RecipeService.deleteRecipe(this.id)
         .then(() => {
           this.$router.push({ name: "Recipes" });
         })
@@ -117,4 +141,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.newIngriedientAmount {
+  margin-bottom: 10px;
+}
+</style>

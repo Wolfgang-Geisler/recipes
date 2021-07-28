@@ -29,18 +29,17 @@
         <input v-model="newIngredient.amount" type="text" />
       </div>
       <div>
-        <button @click.prevent="addIngredient">Add Ingredient</button>
+        <button class="btn btn-danger" @click.prevent="addIngredient">Add Ingredient</button>
       </div>
       <div class="form-control">
-        <button type="submit">Create Recipe</button>
+        <button class="btn btn-success" type="submit">Create Recipe</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-const url = "http://localhost:3000/recipes/";
+import RecipeService from "@/services/recipe-service"
 
 export default {
   data() {
@@ -71,7 +70,7 @@ export default {
 
     createRecipe() {
       axios
-        .post(url, this.recipe)
+        RecipeService.addRecipe(recipe)
         .then((response) => {
           console.log(response.data);
           this.$router.push({ name: "Recipes" }); // Landet nach dem erfolgreichen erstellen wieder auf der Übersicht.

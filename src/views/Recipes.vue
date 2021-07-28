@@ -21,10 +21,8 @@
 </template>
 
 <script>
-import axios from "axios";
-const url = "http://localhost:3000/recipes/";
-const pexelsUrl = "https://api.pexels.com/v1/";
-;
+import RecipeService from "../services/recipe-service";
+
 export default {
   data() {
     return {
@@ -36,8 +34,7 @@ export default {
   },
   methods: {
     getRecipes() {
-      axios
-        .get(url)
+      RecipeService.getRecipes()
         .then((response) => {
           console.log(response.data);
           this.recipes = response.data;

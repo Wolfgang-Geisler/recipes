@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import axios from "axios";
-const url = "http://localhost:3000/recipes/";
+import RecipeService from "@/services/recipe-service"
+
 
 export default {
   props: ["id"],
@@ -33,8 +33,7 @@ export default {
   methods: {
     //get Recipe um zu bearbeiten
     getRecipe() {
-      axios
-        .get(url + this.id)
+        RecipeService.getRecipe(this.id)
         .then((response) => {
           console.log(response.data);
           this.recipe = response.data;
