@@ -6,6 +6,6 @@ const client = createClient(pexelsAPIKey);
 
 export default {
   getImagesPerQuery(query) {
-      return client.photos.search({query, per_page: 3 });
+      return client.photos.search({query, per_page: 12 });
   }
 }
