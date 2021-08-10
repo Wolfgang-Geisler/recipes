@@ -44,6 +44,7 @@ export default {
         { name: "Recipes", component: "RecipesList" },
         { name: "Create Recipe", component: "CreateRecipe" },
         { name: "Dashboard", component: "Dashboard" },
+        { name: "About", component: "About" },
       ],
     };
   },

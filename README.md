@@ -2,13 +2,17 @@
 
 ## Project setup
 ```
+// To install the Project and Packages
 npm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
+// To start the Vue Project
 npm run serve
 ```
+// To start the Database (db.json)
+npm run db
 
 ### Compiles and minifies for production
 ```
