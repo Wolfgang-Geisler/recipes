@@ -20,6 +20,7 @@ npm run serve
 #To start the Database (db.json)
 
 npm run db
+```
 
 ### Compiles and minifies for production
 ```
