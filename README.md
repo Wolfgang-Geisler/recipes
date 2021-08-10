@@ -3,7 +3,7 @@
 #Create, update, delete and choose a Recipe from the list.
 
 
-## Project setup
+### Project setup
 ```
 #To install the Project and Packages
 
