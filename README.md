@@ -1,4 +1,7 @@
 # recipes
+```
+#Create, update, delete and choose a Recipe from the list.
+
 
 ## Project setup
 ```
@@ -12,7 +15,7 @@ npm install
 #To start the Vue Project
 
 npm run serve
-```
+
 #To start the Database (db.json)
 
 npm run db
